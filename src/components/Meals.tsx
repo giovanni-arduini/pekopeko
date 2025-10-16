@@ -1,15 +1,9 @@
 import { useEffect, useState } from "react";
+import { Meal } from "../Types";
+import MealItem from "./MealItem";
 
 export default function Meals() {
   const [loadedMeals, setLoadedMeals] = useState<Meal[]>([]);
-
-  type Meal = {
-    id: string;
-    name: string;
-    price: string;
-    description: string;
-    image: string;
-  };
 
   useEffect(() => {
     async function fetchMeals() {
@@ -29,7 +23,7 @@ export default function Meals() {
   return (
     <ul id="meals">
       {loadedMeals.map((meal: Meal) => {
-        return <li key={meal.id}>{meal.name}</li>;
+        return <MealItem key={meal.id} meal={meal} />;
       })}
     </ul>
   );
