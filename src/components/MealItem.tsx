@@ -1,4 +1,5 @@
 import { Meal } from "../Types";
+import { currencyFormatter } from "../util/formatting";
 
 interface Props {
   meal: Meal;
@@ -11,7 +12,10 @@ const MealItem: React.FC<Props> = ({ meal }) => {
         <img src={`http://localhost:3000/${meal.image}`} alt={meal.name} />
         <div>
           <h3>{meal.name}</h3>
-          <p className="meal-item-price">{meal.price}</p>
+          {/* prices are formatted in omogeneous way */}
+          <p className="meal-item-price">
+            {currencyFormatter.format(Number(meal.price))}
+          </p>
           <p className="meal-item-description">{meal.description}</p>
         </div>
         <p className="meal-item-actions">
